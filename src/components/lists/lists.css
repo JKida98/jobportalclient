@@ -1,0 +1,18 @@
+.titleSubtitleElement {
+    margin-top: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0;
+}
+
+.titleSubtitleElement > p {
+    margin: 0 !important;
+}
+
+.titleSubtitleElement:hover {
+    border-bottom: 1px solid #c4ecff;
+}
+
+.titleSubtitleElementTitle {
+    padding-bottom: 0.25rem;
+    font-weight: bold;
+}

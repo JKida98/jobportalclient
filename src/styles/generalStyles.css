@@ -1,0 +1,17 @@
+.actionButton {
+    width: 100%;
+    background-color: #09bdffd7;
+    border: none;
+    border-radius: 0.25rem;
+    font-weight: 500;
+    letter-spacing: 0.07rem;
+}
+
+.secondaryText {
+    font-size: 11px;
+    color: gray;
+}
+
+.alert {
+    width: 100%;
+}

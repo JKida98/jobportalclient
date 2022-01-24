@@ -1,0 +1,10 @@
+.textInput {
+    border: none;
+    background-color: transparent;
+    border-bottom: 0.5px solid black;
+}
+
+.textInput:focus {
+    outline: none;
+    border-bottom: 0.5px solid blue;
+}

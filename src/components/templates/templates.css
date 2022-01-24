@@ -1,0 +1,34 @@
+.loginTemplate {
+    display: flex;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    background: rgb(103, 94, 255);
+    background: linear-gradient(120deg, rgba(103, 94, 255, 1) 0%, rgba(110, 110, 235, 1) 29%, rgba(65, 175, 255, 1) 59%, rgba(9, 190, 255, 1) 81%, rgba(0, 165, 199, 1) 100%);
+}
+
+.mainTemplate {
+    height: 100vh;
+    background: rgb(103, 94, 255);
+    background: linear-gradient(120deg, rgba(103, 94, 255, 1) 0%, rgba(110, 110, 235, 1) 29%, rgba(65, 175, 255, 1) 59%, rgba(9, 190, 255, 1) 81%, rgba(0, 165, 199, 1) 100%);
+}
+
+.navigation {
+    height: 3rem;
+    background-color: white;
+    justify-content: space-around;
+    display: flex;
+}
+
+.active {
+    color: #09bdffd7;
+}
+
+.navigation-item {
+    cursor: pointer;
+    align-self: center;
+}
+
+.navigation-item:hover {
+    color: #09bdffd7;
+}

@@ -1,0 +1,12 @@
+//auth
+export const AUTH_USER_SUCCESSFUL = 'AUTH_USER_SUCCESSFUL';
+export const AUTH_USER_RESET = 'AUTH_USER_RESET';
+export const AUTH_USER_ERROR = 'AUTH_USER_ERROR';
+
+//offers
+export const OFFER_FETCH_ALL_SUCCESS = 'OFFER_FETCH_ALL_SUCCESS';
+export const OFFER_FETCH_ONE_SUCCESS = 'OFFER_FETCH_ONE_SUCCESS';
+
+//loading
+export const SHOW_SPINNER = 'SHOW_SPINNER';
+export const HIDE_SPINNER = 'HIDE_SPINNER';
