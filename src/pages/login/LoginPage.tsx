@@ -24,7 +24,7 @@ const LoginPage = () => {
         if (authenticated) {
             navigate('/main');
         }
-    }, [authenticated]);
+    }, [authenticated, navigate]);
 
     useEffect(() => {
         if (localStorage.getItem('jwt') !== null) {

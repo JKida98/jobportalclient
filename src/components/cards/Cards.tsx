@@ -7,7 +7,7 @@ import './cards.css';
 export interface ISimpleCardProps {
     title: string;
     subtitle?: string;
-    children: any;
+    children?: any;
 }
 
 export const SimpleCard = ({ title, subtitle, children }: ISimpleCardProps) => {

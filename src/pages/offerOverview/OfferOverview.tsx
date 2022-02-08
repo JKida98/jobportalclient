@@ -10,7 +10,7 @@ type OfferOverviewParams = {
     offerId?: string;
 };
 
-const OfferOverview: React.FC = () => {
+const OfferOverview = () => {
     const { offerId } = useParams<OfferOverviewParams>();
 
     const dispatch = useDispatch();
@@ -19,7 +19,7 @@ const OfferOverview: React.FC = () => {
 
     useEffect(() => {
         dispatch(getOffer(offerId));
-    }, []);
+    }, [dispatch, offerId]);
 
     return (
         <Container>

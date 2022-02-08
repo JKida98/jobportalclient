@@ -4,6 +4,7 @@ import LoginTemplate from '../components/templates/LoginTemplate';
 import MainTemplate from '../components/templates/mainTemplate/MainTemplate';
 import LandingPage from '../pages/landing';
 import LoginPage from '../pages/login';
+import MyOffersOverview from '../pages/myOffersOverview';
 import OfferOverview from '../pages/offerOverview';
 
 const ApplicationRoutes = () => {
@@ -13,6 +14,7 @@ const ApplicationRoutes = () => {
                 <Route element={<MainTemplate />}>
                     <Route path="main" element={<LandingPage />} />
                     <Route path="offer/:offerId" element={<OfferOverview />} />
+                    <Route path="myOffers" element={<MyOffersOverview />} />
                 </Route>
                 <Route element={<LoginTemplate />}>
                     <Route path="login" element={<LoginPage />} />

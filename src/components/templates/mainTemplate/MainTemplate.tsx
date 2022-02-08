@@ -20,7 +20,9 @@ const MainTemplate = () => {
                 <div className="navigation-item active" onClick={() => navigate('main')}>
                     Home
                 </div>
-                <div className="navigation-item">My offers</div>
+                <div className="navigation-item" onClick={() => navigate('myOffers')}>
+                    My offers
+                </div>
                 <div className="navigation-item">Profile</div>
                 <div className="navigation-item" onClick={() => handleLogout()}>
                     Logout

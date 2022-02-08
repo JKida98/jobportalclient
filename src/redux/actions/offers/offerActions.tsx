@@ -56,3 +56,19 @@ export const getOffer = (id: string | undefined) => {
         );
     };
 };
+
+export const removeOffer = (id: string) => {
+    return (dispatch: Dispatch<OfferActions | LoadingActions>) => {
+        dispatch({ type: types.SHOW_SPINNER });
+        new Api().delete(`offers/${id}`).then(
+            () => {
+                dispatch({ type: types.OFFER_REMOVE_SUCCESS, payload: id });
+                dispatch({ type: types.HIDE_SPINNER });
+            },
+            (error) => {
+                console.error(error);
+                dispatch({ type: types.HIDE_SPINNER });
+            }
+        );
+    };
+};

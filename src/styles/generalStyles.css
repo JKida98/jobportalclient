@@ -15,3 +15,22 @@
 .alert {
     width: 100%;
 }
+
+.spaceAround {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rowAlignCenter {
+    align-items: center;
+}
+
+.maxThreeLines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    text-align: justify;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+}

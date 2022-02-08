@@ -32,6 +32,12 @@ export const offerReducer: Reducer<OfferReducerState, OfferActions> = (state = d
                 ...state,
                 myOffers: action.payload
             };
+        case types.OFFER_REMOVE_SUCCESS:
+            const newList = state.myOffers.filter((x) => x.id !== action.payload);
+            return {
+                ...state,
+                myOffers: newList
+            };
         default:
             return state;
     }
