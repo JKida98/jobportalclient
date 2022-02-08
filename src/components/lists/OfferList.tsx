@@ -1,6 +1,11 @@
 import React from 'react';
-import { IOffersList } from '../../interfaces';
+import { IOfferDto } from '../../dtos/IOfferDto';
 import './lists.css';
+
+interface IOffersList {
+    list: IOfferDto[];
+    action: any;
+}
 
 const OffersList: React.FC<IOffersList> = ({ list, action }) => {
     return (

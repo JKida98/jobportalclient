@@ -4,7 +4,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import * as types from '../../../redux/constants';
 import '../templates.css';
 
-const MainTemplate: React.FC = () => {
+const MainTemplate = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 

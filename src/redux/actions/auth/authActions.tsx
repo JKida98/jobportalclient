@@ -1,10 +1,16 @@
-import { Api } from '../../api/api';
-import { LoginFormValues } from '../../interfaces';
-import AuthService from '../../services/authService';
-import * as types from '../constants';
+import { Dispatch } from 'react';
+import { Api } from '../../../api/api';
+import AuthService from '../../../services/authService';
+import * as types from '../../constants';
+import { AuthActions } from './authActionsInterfaces';
+
+export interface LoginFormValues {
+    email: string;
+    password: string;
+}
 
 export const login = (values: LoginFormValues) => {
-    return (dispatch: any) => {
+    return (dispatch: Dispatch<AuthActions>) => {
         new Api().post('auth/login', values).then(
             (response) => {
                 const token = response.data.token;

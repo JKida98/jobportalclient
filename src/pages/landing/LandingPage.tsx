@@ -1,15 +1,16 @@
 import React, { useEffect } from 'react';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
 import OffersList from '../../components/lists/OfferList';
-import { getOffers } from '../../redux/actions/offerActions';
+import { getOffers } from '../../redux/actions/offers/offerActions';
+import { AppState } from '../../redux/reducers';
 
 const LandingPage: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const offers = useSelector((state: RootStateOrAny) => state.offer.offers);
+    const offers = useSelector((state: AppState) => state.offerReducer.offers);
 
     useEffect(() => {
         dispatch(getOffers());
@@ -29,7 +30,7 @@ const LandingPage: React.FC = () => {
                 </Col>
                 <Col xs="6">
                     <SimpleCard title="Awaiting offers">
-                        <OffersList list={offers} />
+                        <OffersList list={offers} action={() => console.log('asd')} />
                     </SimpleCard>
                 </Col>
             </Row>

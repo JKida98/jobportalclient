@@ -1,10 +1,16 @@
+import { Reducer } from 'redux';
+import { LoadingActions } from '../actions/loading/loadingActionsInterfaces';
 import * as types from '../constants';
 
-const INITIAL_STATE = {
+export interface LoadingReducerState {
+    loading: boolean;
+}
+
+const defaultState: LoadingReducerState = {
     loading: false
 };
 
-var loadingReducer = (state = INITIAL_STATE, action: any) => {
+export const loadingReducer: Reducer<LoadingReducerState, LoadingActions> = (state = defaultState, action: LoadingActions) => {
     switch (action.type) {
         case types.SHOW_SPINNER:
             return {
@@ -16,10 +22,7 @@ var loadingReducer = (state = INITIAL_STATE, action: any) => {
                 ...state,
                 loading: false
             };
-
         default:
             return state;
     }
 };
-
-export default loadingReducer;

@@ -6,7 +6,7 @@ import LandingPage from '../pages/landing';
 import LoginPage from '../pages/login';
 import OfferOverview from '../pages/offerOverview';
 
-const ApplicationRoutes: React.FC = () => {
+const ApplicationRoutes = () => {
     return (
         <BrowserRouter>
             <Routes>

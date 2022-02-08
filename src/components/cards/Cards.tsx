@@ -1,15 +1,17 @@
 import React from 'react';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Spinner } from 'reactstrap';
+import { AppState } from '../../redux/reducers';
 import './cards.css';
 
 export interface ISimpleCardProps {
     title: string;
     subtitle?: string;
+    children: any;
 }
 
-export const SimpleCard: React.FC<ISimpleCardProps> = ({ title, subtitle, children }) => {
-    const loading = useSelector((state: RootStateOrAny) => state.loading.loading);
+export const SimpleCard = ({ title, subtitle, children }: ISimpleCardProps) => {
+    const loading = useSelector((state: AppState) => state.loadingReducer.loading);
 
     return (
         <div className="simpleCard p-4">

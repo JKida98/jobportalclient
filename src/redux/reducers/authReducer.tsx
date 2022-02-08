@@ -1,12 +1,20 @@
-import { AuthState } from '../../interfaces';
+import { Reducer } from 'redux';
+import { AuthActions } from '../actions/auth/authActionsInterfaces';
 import * as types from '../constants';
 
-const INITIAL_STATE: AuthState = {
-    success: false,
-    error: false
+export interface AuthReducerState {
+    error: boolean;
+    errorMessage: string;
+    success: boolean;
+}
+
+const defaultState: AuthReducerState = {
+    error: false,
+    errorMessage: '',
+    success: false
 };
 
-var authReducer = (state = INITIAL_STATE, action: any) => {
+export const authReducer: Reducer<AuthReducerState, AuthActions> = (state = defaultState, action: AuthActions) => {
     switch (action.type) {
         case types.AUTH_USER_SUCCESSFUL:
             return {
@@ -21,11 +29,10 @@ var authReducer = (state = INITIAL_STATE, action: any) => {
         case types.AUTH_USER_ERROR:
             return {
                 ...state,
-                error: action.payload
+                error: true,
+                errorMessage: 'There was a problem with loginng in'
             };
         default:
             return state;
     }
 };
-
-export default authReducer;

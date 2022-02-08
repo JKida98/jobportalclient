@@ -1,18 +1,20 @@
 import React, { useEffect } from 'react';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+// import ReactCSSTransitionGroup from 'react-transition-group'; // ES6
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
-import { LoginFormValues } from '../../interfaces';
-import { login } from '../../redux/actions/authActions';
+import { login, LoginFormValues } from '../../redux/actions/auth/authActions';
+import { AppState } from '../../redux/reducers';
 import LoginForm from './LoginForm';
 
-const LoginPage: React.FC = () => {
+const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const error = useSelector((state: RootStateOrAny) => state.auth.error);
-    const authenticated = useSelector((state: RootStateOrAny) => state.auth.success);
+    const error = useSelector((state: AppState) => state.authReducer.error);
+    const errorMessage = useSelector((state: AppState) => state.authReducer.errorMessage);
+    const authenticated = useSelector((state: AppState) => state.authReducer.success);
 
     const handleLogin = (values: LoginFormValues) => {
         dispatch(login(values));
@@ -33,8 +35,8 @@ const LoginPage: React.FC = () => {
     return (
         <SimpleCard title="Welcome to JobPortal" subtitle="Enter your credentials to log in">
             {error && (
-                <Alert className="alert" isOpen={true} color="danger" title={'error'}>
-                    {error}
+                <Alert className="alert" color="danger" title="error" isOpen>
+                    <p>{errorMessage}</p>
                 </Alert>
             )}
             <LoginForm handleLogin={handleLogin} />

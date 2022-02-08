@@ -3,7 +3,7 @@ import ApplicationRoutes from './routes/ApplicationRoutes';
 
 export interface IApplicationProps {}
 
-const Application: React.FunctionComponent<IApplicationProps> = (props) => {
+const Application = (props: IApplicationProps) => {
     return <ApplicationRoutes />;
 };
 

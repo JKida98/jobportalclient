@@ -1,22 +1,23 @@
 import React, { useEffect } from 'react';
-import { RootStateOrAny, useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Col, Container, Row, Spinner } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
-import { IOfferDto, OfferState } from '../../interfaces';
-import { getOffer } from '../../redux/actions/offerActions';
+import { getOffer } from '../../redux/actions/offers/offerActions';
+import { AppState } from '../../redux/reducers';
+
+type OfferOverviewParams = {
+    offerId?: string;
+};
 
 const OfferOverview: React.FC = () => {
-    const { offerId } = useParams();
+    const { offerId } = useParams<OfferOverviewParams>();
 
     const dispatch = useDispatch();
 
-    const offerState = (state: OfferState) => state.offer;
-    const offer = useSelector(offerState);
-    // const offer = useSelector((state: OfferState) => state.offerReducer.);
+    const offer = useSelector((state: AppState) => state.offerReducer.offer);
 
     useEffect(() => {
-        console.log('here');
         dispatch(getOffer(offerId));
     }, []);
 

@@ -1,13 +1,14 @@
 import { Formik } from 'formik';
 import React from 'react';
 import TextInput from '../../components/formInputs/TextInput';
+import { LoginFormValues } from '../../redux/actions/auth/authActions';
 
 export interface ILoginFormProps {
-    handleLogin: any;
+    handleLogin: (values: LoginFormValues) => void;
 }
 
 const LoginForm: React.FC<ILoginFormProps> = ({ handleLogin }) => {
-    const initialValues = {
+    const initialValues: LoginFormValues = {
         email: '',
         password: ''
     };
