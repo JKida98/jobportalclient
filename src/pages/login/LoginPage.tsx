@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-// import ReactCSSTransitionGroup from 'react-transition-group'; // ES6
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from 'reactstrap';
