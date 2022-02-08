@@ -23,6 +23,23 @@ export const getOffers = () => {
     };
 };
 
+export const getMyOffers = () => {
+    return (dispatch: Dispatch<OfferActions | LoadingActions>) => {
+        dispatch({ type: types.SHOW_SPINNER });
+        new Api().get('my/offers').then(
+            (response: AxiosResponse<IOfferDto[]>) => {
+                const payload = response.data;
+                dispatch({ type: types.OFFER_FETCH_MINE_SUCCESS, payload });
+                dispatch({ type: types.HIDE_SPINNER });
+            },
+            (error) => {
+                console.error(error);
+                dispatch({ type: types.HIDE_SPINNER });
+            }
+        );
+    };
+};
+
 export const getOffer = (id: string | undefined) => {
     return (dispatch: Dispatch<OfferActions | LoadingActions>) => {
         dispatch({ type: types.SHOW_SPINNER });

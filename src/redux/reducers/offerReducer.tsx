@@ -5,11 +5,13 @@ import * as types from '../constants';
 
 export interface OfferReducerState {
     offer: IOfferDto;
+    myOffers: Array<IOfferDto>;
     offers: Array<IOfferDto>;
 }
 
 const defaultState: OfferReducerState = {
     offer: { id: '', title: '', description: '', hourlyPrice: 0 },
+    myOffers: [],
     offers: []
 };
 
@@ -24,6 +26,11 @@ export const offerReducer: Reducer<OfferReducerState, OfferActions> = (state = d
             return {
                 ...state,
                 offer: action.payload
+            };
+        case types.OFFER_FETCH_MINE_SUCCESS:
+            return {
+                ...state,
+                myOffers: action.payload
             };
         default:
             return state;

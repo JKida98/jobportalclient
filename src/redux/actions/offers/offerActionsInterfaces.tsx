@@ -11,4 +11,9 @@ interface OfferFetchOneSuccessAction {
     payload: IOfferDto;
 }
 
-export type OfferActions = OfferFetchAllSuccessAction | OfferFetchOneSuccessAction;
+interface OfferFetchMineSuccessAction {
+    type: typeof types.OFFER_FETCH_MINE_SUCCESS;
+    payload: IOfferDto[];
+}
+
+export type OfferActions = OfferFetchAllSuccessAction | OfferFetchOneSuccessAction | OfferFetchMineSuccessAction;
