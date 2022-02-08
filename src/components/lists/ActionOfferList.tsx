@@ -3,6 +3,7 @@ import { Edit, Plus, Trash } from 'react-feather';
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { IOfferDto } from '../../dtos/IOfferDto';
+import OfferModal from '../../pages/offersOverview/OfferModal';
 import { removeOffer } from '../../redux/actions/offers/offerActions';
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal';
 import './lists.css';
@@ -16,15 +17,17 @@ const ActionOfferList: React.FC<IOffersList> = ({ list, action }) => {
     const dispatch = useDispatch();
     const [id, setId] = useState('');
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-
-    const handleEditClicked = (e: React.MouseEvent, id: string) => {
-        e.stopPropagation();
-        console.log(id);
-        console.log('editing');
-    };
+    const [editingOffer, setEditingOffer] = useState(false);
+    const [showOfferModal, setShowOfferModal] = useState(false);
 
     const handleDeleteOffer = () => {
         dispatch(removeOffer(id));
+    };
+
+    const handleEditClicked = (e: React.MouseEvent, id: string) => {
+        e.stopPropagation();
+        setShowOfferModal(true);
+        setEditingOffer(true);
     };
 
     const handleTrashClicked = (e: React.MouseEvent, id: string) => {
@@ -34,7 +37,9 @@ const ActionOfferList: React.FC<IOffersList> = ({ list, action }) => {
     };
 
     const handlePlusClicked = (e: React.MouseEvent) => {
-        console.log('adding');
+        e.stopPropagation();
+        setShowOfferModal(true);
+        setEditingOffer(false);
     };
 
     const renderList = () => {
@@ -43,6 +48,7 @@ const ActionOfferList: React.FC<IOffersList> = ({ list, action }) => {
                 <Row className="rowAlignCenter mb-4" key={x.id} onClick={() => action(x)}>
                     <Col xs="10">
                         <p className="m-0">{x.title}</p>
+                        <p className="m-0 secondaryBlackText">Price pr. hour: {x.hourlyPrice}</p>
                         <p className="m-0 secondaryText maxThreeLines">{x.description}</p>
                     </Col>
                     <Col xs="2 spaceAround">
@@ -63,6 +69,8 @@ const ActionOfferList: React.FC<IOffersList> = ({ list, action }) => {
                 </Col>
             </Row>
             <DeleteConfirmationModal showModal={showDeleteModal} action={() => handleDeleteOffer()} toggle={() => setShowDeleteModal(!showDeleteModal)} />
+            {console.log(showOfferModal)}
+            <OfferModal showModal={showOfferModal} edit={editingOffer} toggle={() => setShowOfferModal(!showOfferModal)} />
         </>
     );
 };

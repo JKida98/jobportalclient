@@ -12,6 +12,11 @@
     color: gray;
 }
 
+.secondaryBlackText {
+    font-size: 11px;
+    color: black;
+}
+
 .alert {
     width: 100%;
 }
@@ -19,6 +24,11 @@
 .spaceAround {
     display: flex;
     justify-content: space-around;
+}
+
+.spaceBetween {
+    display: flex;
+    justify-content: space-between;
 }
 
 .rowAlignCenter {

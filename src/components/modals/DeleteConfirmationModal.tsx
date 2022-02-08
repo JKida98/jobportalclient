@@ -1,12 +1,12 @@
 import { Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
 
-interface IDeleteConfirmationModal {
+interface IDeleteConfirmationModalProps {
     showModal: boolean;
     action: any;
     toggle: any;
 }
 
-const DeleteConfirmationModal: React.FC<IDeleteConfirmationModal> = ({ showModal, action, toggle }) => {
+const DeleteConfirmationModal: React.FC<IDeleteConfirmationModalProps> = ({ showModal, action, toggle }) => {
     return (
         <Modal fade isOpen={showModal}>
             <ModalHeader>Remove offer</ModalHeader>
@@ -14,9 +14,11 @@ const DeleteConfirmationModal: React.FC<IDeleteConfirmationModal> = ({ showModal
                 <p>Do you want to remove selected offer?</p>
             </ModalBody>
             <ModalFooter>
-                <Row>
-                    <Col className="spaceAround">
-                        <Button onClick={() => toggle()}>Cancel</Button>
+                <Row className="w-100 m-0">
+                    <Col className="spaceBetween m-0 p-0">
+                        <Button outline onClick={() => toggle()}>
+                            Cancel
+                        </Button>
                         <Button onClick={() => action()}>Delete</Button>
                     </Col>
                 </Row>

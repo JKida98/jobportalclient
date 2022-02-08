@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
-import * as types from '../../../redux/constants';
-import '../templates.css';
+import * as types from '../../redux/constants';
+import './templates.css';
 
 const MainTemplate = () => {
     const dispatch = useDispatch();
@@ -20,7 +20,7 @@ const MainTemplate = () => {
                 <div className="navigation-item active" onClick={() => navigate('main')}>
                     Home
                 </div>
-                <div className="navigation-item" onClick={() => navigate('myOffers')}>
+                <div className="navigation-item" onClick={() => navigate('offers')}>
                     My offers
                 </div>
                 <div className="navigation-item">Profile</div>

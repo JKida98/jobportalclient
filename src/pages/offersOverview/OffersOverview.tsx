@@ -7,7 +7,7 @@ import ActionOfferList from '../../components/lists/ActionOfferList';
 import { getMyOffers } from '../../redux/actions/offers/offerActions';
 import { AppState } from '../../redux/reducers';
 
-const MyOffersOverview = () => {
+const OffersOverview = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -34,4 +34,4 @@ const MyOffersOverview = () => {
     );
 };
 
-export default MyOffersOverview;
+export default OffersOverview;

@@ -4,3 +4,9 @@ export interface IOfferDto {
     description: string;
     hourlyPrice: number;
 }
+
+export interface IOfferForCreaton {
+    title: string;
+    description: string;
+    hourlyPrice: number;
+}
