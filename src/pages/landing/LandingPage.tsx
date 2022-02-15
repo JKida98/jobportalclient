@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
 import OffersList from '../../components/lists/OfferList';
+import { IOfferDto } from '../../dtos/IOfferDto';
 import { getMyOffers, getOffers } from '../../redux/actions/offers/offerActions';
 import { AppState } from '../../redux/reducers';
 
-const LandingPage: React.FC = () => {
+const LandingPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -19,7 +20,10 @@ const LandingPage: React.FC = () => {
         dispatch(getMyOffers());
     }, [dispatch]);
 
-    const handleOfferClicked = (offer: any) => {
+    const handleOfferClicked = (offer: IOfferDto) => {
+        if (offer.userId === localStorage.getItem('myId')) {
+            return;
+        }
         navigate(`/offer/${offer.id}`);
     };
 

@@ -1,4 +1,5 @@
 import { Dispatch } from 'react';
+import jwt_decode from 'jwt-decode';
 import { Api } from '../../../api/api';
 import AuthService from '../../../services/authService';
 import * as types from '../../constants';
@@ -9,11 +10,18 @@ export interface LoginFormValues {
     password: string;
 }
 
+export interface IToken {
+    Id: string;
+    email: string;
+}
+
 export const login = (values: LoginFormValues) => {
     return (dispatch: Dispatch<AuthActions>) => {
         new Api().post('auth/login', values).then(
             (response) => {
                 const token = response.data.token;
+                const tokenDecoded = jwt_decode<IToken>(token);
+                localStorage.setItem('myId', tokenDecoded.Id);
                 new AuthService().setAuthToken(token);
                 dispatch({ type: types.AUTH_USER_SUCCESSFUL, payload: true });
             },

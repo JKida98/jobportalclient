@@ -21,4 +21,20 @@ interface OfferRemoveSuccessAction {
     payload: string;
 }
 
-export type OfferActions = OfferFetchAllSuccessAction | OfferFetchOneSuccessAction | OfferFetchMineSuccessAction | OfferRemoveSuccessAction;
+interface OfferUpdateSuccessAction {
+    type: typeof types.OFFER_UPDATE_SUCCESS;
+    payload: IOfferDto;
+}
+
+interface OfferCreateSuccessAction {
+    type: typeof types.OFFER_CREATE_SUCCESS;
+    payload: IOfferDto;
+}
+
+export type OfferActions =
+    | OfferFetchAllSuccessAction
+    | OfferFetchOneSuccessAction
+    | OfferFetchMineSuccessAction
+    | OfferRemoveSuccessAction
+    | OfferUpdateSuccessAction
+    | OfferCreateSuccessAction;

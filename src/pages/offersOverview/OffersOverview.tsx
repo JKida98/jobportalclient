@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
-import ActionOfferList from '../../components/lists/ActionOfferList';
+import CrudOfferList from '../../components/lists/CrudOfferList';
 import { getMyOffers } from '../../redux/actions/offers/offerActions';
 import { AppState } from '../../redux/reducers';
 
@@ -25,8 +25,11 @@ const OffersOverview = () => {
         <Container>
             <Row>
                 <Col>
-                    <SimpleCard title="Offers overview" subtitle="In this view you manage your offers">
-                        <ActionOfferList list={myOffers} action={handleOfferClicked} />
+                    <SimpleCard
+                        title="Offers overview"
+                        subtitle="In this view you manage your offers"
+                    >
+                        <CrudOfferList list={myOffers} action={handleOfferClicked} />
                     </SimpleCard>
                 </Col>
             </Row>

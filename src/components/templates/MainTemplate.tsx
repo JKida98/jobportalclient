@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import * as types from '../../redux/constants';
@@ -10,6 +9,7 @@ const MainTemplate = () => {
 
     const handleLogout = () => {
         localStorage.removeItem('jwt');
+        localStorage.removeItem('myId');
         dispatch({ type: types.AUTH_USER_RESET });
         navigate('/login');
     };
@@ -17,13 +17,16 @@ const MainTemplate = () => {
     return (
         <div className="mainTemplate">
             <div className="navigation mb-4">
-                <div className="navigation-item active" onClick={() => navigate('main')}>
+                <div className="navigation-item" onClick={() => navigate('main')}>
                     Home
                 </div>
                 <div className="navigation-item" onClick={() => navigate('offers')}>
                     My offers
                 </div>
                 <div className="navigation-item">Profile</div>
+                <div className="navigation-item" onClick={() => navigate('card')}>
+                    Card
+                </div>
                 <div className="navigation-item" onClick={() => handleLogout()}>
                     Logout
                 </div>

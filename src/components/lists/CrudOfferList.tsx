@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { IOfferDto } from '../../dtos/IOfferDto';
 import OfferModal from '../../pages/offersOverview/OfferModal';
-import { removeOffer } from '../../redux/actions/offers/offerActions';
+import { getOfferWithoutSpinner, removeOffer } from '../../redux/actions/offers/offerActions';
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal';
 import './lists.css';
 
@@ -13,7 +13,7 @@ interface IOffersList {
     action: any;
 }
 
-const ActionOfferList: React.FC<IOffersList> = ({ list, action }) => {
+const CrudOfferList: React.FC<IOffersList> = ({ list, action }) => {
     const dispatch = useDispatch();
     const [id, setId] = useState('');
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -28,6 +28,7 @@ const ActionOfferList: React.FC<IOffersList> = ({ list, action }) => {
         e.stopPropagation();
         setShowOfferModal(true);
         setEditingOffer(true);
+        dispatch(getOfferWithoutSpinner(id));
     };
 
     const handleTrashClicked = (e: React.MouseEvent, id: string) => {
@@ -68,11 +69,20 @@ const ActionOfferList: React.FC<IOffersList> = ({ list, action }) => {
                     <Plus onClick={(e) => handlePlusClicked(e)} />
                 </Col>
             </Row>
-            <DeleteConfirmationModal showModal={showDeleteModal} action={() => handleDeleteOffer()} toggle={() => setShowDeleteModal(!showDeleteModal)} />
-            {console.log(showOfferModal)}
-            <OfferModal showModal={showOfferModal} edit={editingOffer} toggle={() => setShowOfferModal(!showOfferModal)} />
+            <DeleteConfirmationModal
+                showModal={showDeleteModal}
+                action={() => handleDeleteOffer()}
+                toggle={() => setShowDeleteModal(!showDeleteModal)}
+            />
+            {showOfferModal && (
+                <OfferModal
+                    showModal={showOfferModal}
+                    edit={editingOffer}
+                    toggle={() => setShowOfferModal(!showOfferModal)}
+                />
+            )}
         </>
     );
 };
 
-export default ActionOfferList;
+export default CrudOfferList;

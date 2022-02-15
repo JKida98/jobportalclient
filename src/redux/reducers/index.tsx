@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
+import { cardReducer } from './cardReducer';
 import { authReducer } from './authReducer';
 import { offerReducer } from './offerReducer';
 import { loadingReducer } from './loadingReducer';
 import { AuthActions } from '../actions/auth/authActionsInterfaces';
 
-export const reducers = combineReducers({ authReducer, offerReducer, loadingReducer });
+export const reducers = combineReducers({ authReducer, offerReducer, loadingReducer, cardReducer });
 
 const rootReducer = (state: any, action: any) => {
     return reducers(state, action);

@@ -1,7 +1,11 @@
 import { useRef } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Button, Col, Modal, ModalBody, ModalFooter, ModalHeader, Row } from 'reactstrap';
-import { IOfferForCreaton } from '../../dtos/IOfferDto';
+import { initialOfferValues, IOfferForCreation } from '../../dtos/IOfferDto';
+import * as jsonpatch from 'fast-json-patch';
+import { AppState } from '../../redux/reducers';
 import OfferForm from './OfferForm';
+import { createOffer, updateOffer } from '../../redux/actions/offers/offerActions';
 
 interface IOfferModalProps {
     showModal: boolean;
@@ -10,23 +14,35 @@ interface IOfferModalProps {
 }
 
 const OfferModal: React.FC<IOfferModalProps> = ({ showModal, edit, toggle }) => {
-    const initialValues: IOfferForCreaton = {
-        title: '',
-        description: '',
-        hourlyPrice: 0
-    };
-
-    const handleSubmit = (values: IOfferForCreaton) => {
-        console.log(values);
-    };
-
     const formikRef = useRef({ handleSubmit: () => {} });
+    const dispatch = useDispatch();
+    const offerToEdit = useSelector((state: AppState) => state.offerReducer.offer);
+
+    const handleSubmit = (values: IOfferForCreation) => {
+        edit ? handleUpdate(values) : handleAdd(values);
+    };
+
+    const handleUpdate = (values: IOfferForCreation) => {
+        var diff = jsonpatch.compare(offerToEdit, values);
+        dispatch(updateOffer(offerToEdit.id, diff));
+    };
+
+    const handleAdd = (values: IOfferForCreation) => {
+        dispatch(createOffer(values));
+    };
+
+    const initialValues = edit ? offerToEdit : initialOfferValues;
 
     return (
-        <Modal isOpen={showModal} toggle={toggle}>
+        <Modal isOpen={showModal} toggle={() => toggle()}>
             <ModalHeader>{edit ? 'Editing offer' : 'Adding a new offer'}</ModalHeader>
+
             <ModalBody>
-                <OfferForm externalRef={formikRef} initialValues={initialValues} externalSubmit={(values: IOfferForCreaton) => handleSubmit(values)} />
+                <OfferForm
+                    externalRef={formikRef}
+                    initialValues={initialValues}
+                    externalSubmit={(values: IOfferForCreation) => handleSubmit(values)}
+                />
             </ModalBody>
             <ModalFooter>
                 <Row className="w-100 m-0">
