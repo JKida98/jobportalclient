@@ -3,14 +3,13 @@ import React from 'react';
 import './formInputs.css';
 import { labelFromName } from './formInputsHelpers';
 
-export interface ITextInputProps {
+export interface INumberInputProps {
     name: string;
     displayName?: string;
-    secret?: boolean;
     value?: any;
 }
 
-const TextInput: React.FC<ITextInputProps> = ({ name, displayName, secret, value }) => {
+const NumberInput: React.FC<INumberInputProps> = ({ name, displayName, value }) => {
     const { handleChange } = useFormikContext();
 
     return (
@@ -22,11 +21,11 @@ const TextInput: React.FC<ITextInputProps> = ({ name, displayName, secret, value
                 value={value}
                 name={name}
                 onChange={handleChange}
-                type={secret ? 'password' : 'text'}
+                type="number"
                 className="textInput w-100"
             />
         </div>
     );
 };
 
-export default TextInput;
+export default NumberInput;

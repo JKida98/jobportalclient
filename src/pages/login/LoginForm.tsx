@@ -17,8 +17,8 @@ const LoginForm: React.FC<ILoginFormProps> = ({ handleLogin }) => {
         <Formik initialValues={initialValues} onSubmit={(values) => handleLogin(values)}>
             {({ handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
-                    <TextInput name="email" displayName="Email" />
-                    <TextInput name="password" displayName="Password" hidden />
+                    <TextInput name="email" />
+                    <TextInput name="password" secret />
                     <input className="actionButton" type="submit" />
                 </form>
             )}

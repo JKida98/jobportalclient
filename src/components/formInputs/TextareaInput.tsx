@@ -3,14 +3,14 @@ import React from 'react';
 import './formInputs.css';
 import { labelFromName } from './formInputsHelpers';
 
-export interface ITextInputProps {
+export interface ITextareaInputProps {
     name: string;
     displayName?: string;
-    secret?: boolean;
+    hidden?: boolean;
     value?: any;
 }
 
-const TextInput: React.FC<ITextInputProps> = ({ name, displayName, secret, value }) => {
+const TextareaInput: React.FC<ITextareaInputProps> = ({ name, displayName, value }) => {
     const { handleChange } = useFormikContext();
 
     return (
@@ -18,15 +18,15 @@ const TextInput: React.FC<ITextInputProps> = ({ name, displayName, secret, value
             <div className="mb-2">
                 <label>{displayName ?? labelFromName(name)}</label>
             </div>
-            <input
+            <textarea
+                className="textInput w-100"
                 value={value}
+                rows={5}
                 name={name}
                 onChange={handleChange}
-                type={secret ? 'password' : 'text'}
-                className="textInput w-100"
             />
         </div>
     );
 };
 
-export default TextInput;
+export default TextareaInput;

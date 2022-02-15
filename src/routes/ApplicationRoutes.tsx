@@ -1,11 +1,11 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import LoginTemplate from '../components/templates/LoginTemplate';
-import MainTemplate from '../components/templates/mainTemplate/MainTemplate';
+import MainTemplate from '../components/templates/MainTemplate';
+import CardOverview from '../pages/cardOverview';
 import LandingPage from '../pages/landing';
 import LoginPage from '../pages/login';
-import MyOffersOverview from '../pages/myOffersOverview';
 import OfferOverview from '../pages/offerOverview';
+import OffersOverview from '../pages/offersOverview';
 
 const ApplicationRoutes = () => {
     return (
@@ -14,10 +14,12 @@ const ApplicationRoutes = () => {
                 <Route element={<MainTemplate />}>
                     <Route path="main" element={<LandingPage />} />
                     <Route path="offer/:offerId" element={<OfferOverview />} />
-                    <Route path="myOffers" element={<MyOffersOverview />} />
+                    <Route path="offers" element={<OffersOverview />} />
+                    <Route path="card" element={<CardOverview />} />
                 </Route>
                 <Route element={<LoginTemplate />}>
                     <Route path="login" element={<LoginPage />} />
+                    <Route path="" element={<LoginPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>

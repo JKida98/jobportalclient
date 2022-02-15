@@ -4,7 +4,7 @@ import './lists.css';
 
 interface IOffersList {
     list: IOfferDto[];
-    action: any;
+    action?: any;
 }
 
 const OffersList: React.FC<IOffersList> = ({ list, action }) => {
