@@ -1,14 +1,13 @@
 import { IOfferDto } from '../../../dtos/IOfferDto';
 import * as types from '../../constants';
 
-interface AddOfferToCardAction {
-    type: typeof types.ADD_OFFER_TO_CARD;
+interface CardAddOfferAction {
+    type: typeof types.CARD_ADD_OFFER_SUCCESS;
     payload: IOfferDto;
 }
 
-interface RemoveOfferFromCardAction {
-    type: typeof types.REMOVE_OFFER_FROM_CARD;
+interface CardRemoveOfferAction {
+    type: typeof types.CARD_REMOVE_OFFER_SUCCESS;
     payload: string;
 }
-
-export type CardActions = AddOfferToCardAction | RemoveOfferFromCardAction;
+export type CardActions = CardAddOfferAction | CardRemoveOfferAction;

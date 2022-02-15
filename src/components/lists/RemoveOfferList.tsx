@@ -4,15 +4,15 @@ import { useDispatch } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { IOfferDto } from '../../dtos/IOfferDto';
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal';
-import './lists.css';
+import './_lists.css';
 
-interface IOffersList {
+interface IRemoveOffersListProps {
     list: IOfferDto[];
     action?: any;
     removeAction: any;
 }
 
-const RemoveOfferList: React.FC<IOffersList> = ({ list, action, removeAction }) => {
+const RemoveOfferList: React.FC<IRemoveOffersListProps> = ({ list, action, removeAction }) => {
     const dispatch = useDispatch();
     const [id, setId] = useState('');
     const [showDeleteModal, setShowDeleteModal] = useState(false);
