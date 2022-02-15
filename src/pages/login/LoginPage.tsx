@@ -5,11 +5,13 @@ import { Alert } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
 import { login, LoginFormValues } from '../../redux/actions/auth/authActions';
 import { AppState } from '../../redux/reducers';
+import AuthService from '../../services/authService';
 import LoginForm from './LoginForm';
 
 const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const authService = new AuthService();
 
     const error = useSelector((state: AppState) => state.authReducer.error);
     const errorMessage = useSelector((state: AppState) => state.authReducer.errorMessage);
@@ -26,7 +28,7 @@ const LoginPage = () => {
     }, [authenticated, navigate]);
 
     useEffect(() => {
-        if (localStorage.getItem('jwt') !== null) {
+        if (authService.getAuthToken() !== null) {
             navigate('/main');
         }
     }, [navigate]);

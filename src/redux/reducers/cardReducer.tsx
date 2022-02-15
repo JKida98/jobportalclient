@@ -16,13 +16,13 @@ export const cardReducer: Reducer<CardReducerState, CardActions> = (
     action: CardActions
 ) => {
     switch (action.type) {
-        case types.ADD_OFFER_TO_CARD:
+        case types.CARD_ADD_OFFER_SUCCESS:
             const listAfterAdding = [...state.offers, action.payload];
             return {
                 ...state,
                 offers: listAfterAdding
             };
-        case types.REMOVE_OFFER_FROM_CARD:
+        case types.CARD_REMOVE_OFFER_SUCCESS:
             const listAfterRemoving = state.offers.filter((x) => x.id !== action.payload);
             return {
                 ...state,

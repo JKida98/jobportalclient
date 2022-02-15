@@ -21,8 +21,9 @@ export const login = (values: LoginFormValues) => {
             (response) => {
                 const token = response.data.token;
                 const tokenDecoded = jwt_decode<IToken>(token);
-                localStorage.setItem('myId', tokenDecoded.Id);
-                new AuthService().setAuthToken(token);
+                const authService = new AuthService();
+                authService.setAuthToken(token);
+                authService.setMyId(tokenDecoded.Id);
                 dispatch({ type: types.AUTH_USER_SUCCESSFUL, payload: true });
             },
             (error) => {

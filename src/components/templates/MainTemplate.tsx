@@ -1,15 +1,16 @@
 import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
 import * as types from '../../redux/constants';
+import AuthService from '../../services/authService';
 import './templates.css';
 
 const MainTemplate = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const authService = new AuthService();
 
     const handleLogout = () => {
-        localStorage.removeItem('jwt');
-        localStorage.removeItem('myId');
+        authService.clear();
         dispatch({ type: types.AUTH_USER_RESET });
         navigate('/login');
     };

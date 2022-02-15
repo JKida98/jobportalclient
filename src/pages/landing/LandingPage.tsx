@@ -7,10 +7,12 @@ import OffersList from '../../components/lists/OfferList';
 import { IOfferDto } from '../../dtos/IOfferDto';
 import { getMyOffers, getOffers } from '../../redux/actions/offers/offerActions';
 import { AppState } from '../../redux/reducers';
+import AuthService from '../../services/authService';
 
 const LandingPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const authService = new AuthService();
 
     const offers = useSelector((state: AppState) => state.offerReducer.offers);
     const myOffers = useSelector((state: AppState) => state.offerReducer.myOffers);
@@ -21,7 +23,7 @@ const LandingPage = () => {
     }, [dispatch]);
 
     const handleOfferClicked = (offer: IOfferDto) => {
-        if (offer.userId === localStorage.getItem('myId')) {
+        if (offer.userId === authService.getMyId()) {
             return;
         }
         navigate(`/offer/${offer.id}`);
@@ -31,7 +33,7 @@ const LandingPage = () => {
         <Container>
             <Row>
                 <Col xs="6">
-                    <SimpleCard title="Accepted offers" subtitle="These are accepted offers by you">
+                    <SimpleCard title="Recommended offers" subtitle="Click an offer and reserve it">
                         <OffersList list={offers} action={handleOfferClicked} />
                     </SimpleCard>
                 </Col>

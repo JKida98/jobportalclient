@@ -7,7 +7,19 @@ export default class AuthService {
         return localStorage.getItem('jwt');
     }
 
+    setMyId(id: string) {
+        localStorage.setItem('myId', id);
+    }
+
+    getMyId() {
+        return localStorage.getItem('myId');
+    }
+
     isLoggedIn() {
         return localStorage.getItem('jwt') !== undefined;
+    }
+
+    clear() {
+        localStorage.clear();
     }
 }

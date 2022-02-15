@@ -6,14 +6,14 @@ import { IOfferDto } from '../../dtos/IOfferDto';
 import OfferModal from '../../pages/offersOverview/OfferModal';
 import { getOfferWithoutSpinner, removeOffer } from '../../redux/actions/offers/offerActions';
 import DeleteConfirmationModal from '../modals/DeleteConfirmationModal';
-import './lists.css';
+import './_lists.css';
 
-interface IOffersList {
+interface ICrudOffersList {
     list: IOfferDto[];
     action: any;
 }
 
-const CrudOfferList: React.FC<IOffersList> = ({ list, action }) => {
+const CrudOfferList: React.FC<ICrudOffersList> = ({ list, action }) => {
     const dispatch = useDispatch();
     const [id, setId] = useState('');
     const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -49,12 +49,12 @@ const CrudOfferList: React.FC<IOffersList> = ({ list, action }) => {
                 <Row className="rowAlignCenter mb-4" key={x.id} onClick={() => action(x)}>
                     <Col xs="10">
                         <p className="m-0">{x.title}</p>
-                        <p className="m-0 secondaryBlackText">Price pr. hour: {x.hourlyPrice}</p>
+                        <p className="m-0 secondaryBlackText">Price per hour: {x.hourlyPrice}</p>
                         <p className="m-0 secondaryText maxThreeLines">{x.description}</p>
                     </Col>
                     <Col xs="2 spaceAround">
-                        <Edit onClick={(e) => handleEditClicked(e, x.id)} />
-                        <Trash onClick={(e) => handleTrashClicked(e, x.id)} />
+                        <Edit size={20} onClick={(e) => handleEditClicked(e, x.id)} />
+                        <Trash size={20} onClick={(e) => handleTrashClicked(e, x.id)} />
                     </Col>
                 </Row>
             );
