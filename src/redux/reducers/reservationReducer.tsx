@@ -4,11 +4,15 @@ import { ReservationActions } from '../actions/reservations/reservationActionsIn
 import * as types from '../constants';
 
 export interface ReservationReducerState {
-    reservation: IReservationDto;
+    reservation?: IReservationDto;
+    boughtReservations: IReservationDto[];
+    soldReservations: IReservationDto[];
 }
 
 const defaultState: ReservationReducerState = {
-    reservation: { id: '', createdAt: '', status: 0, totalPrice: 0 }
+    reservation: { id: '', createdAt: '', status: 0, totalPrice: 0 },
+    boughtReservations: [],
+    soldReservations: []
 };
 
 export const reservationReducer: Reducer<ReservationReducerState, ReservationActions> = (
@@ -21,6 +25,30 @@ export const reservationReducer: Reducer<ReservationReducerState, ReservationAct
                 ...state,
                 reservation: action.payload
             };
+        case types.RESERVATION_FETCH_BOUGHT_SUCCESS:
+            return {
+                ...state,
+                boughtReservations: action.payload
+            };
+        case types.RESERVATION_FETCH_SOLD_SUCCESS:
+            return {
+                ...state,
+                soldReservations: action.payload
+            };
+        case types.RESERVATION_SELECT_SUCCESS:
+            const found = state.boughtReservations.find((x) => x.id === action.payload);
+            if (found !== undefined) {
+                return {
+                    ...state,
+                    reservation: found
+                };
+            } else {
+                const sold = state.soldReservations.find((x) => x.id === action.payload);
+                return {
+                    ...state,
+                    reservation: sold
+                };
+            }
         default:
             return state;
     }

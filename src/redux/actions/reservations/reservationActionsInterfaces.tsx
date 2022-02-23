@@ -7,4 +7,23 @@ interface ReservationCreateAction {
     payload: IReservationDto;
 }
 
-export type ReservationActions = ReservationCreateAction;
+interface ReservationFetchBoughtAction {
+    type: typeof types.RESERVATION_FETCH_BOUGHT_SUCCESS;
+    payload: IReservationDto[];
+}
+
+interface ReservationFetchSoldAction {
+    type: typeof types.RESERVATION_FETCH_SOLD_SUCCESS;
+    payload: IReservationDto[];
+}
+
+interface ReservationSelectAction {
+    type: typeof types.RESERVATION_SELECT_SUCCESS;
+    payload?: string;
+}
+
+export type ReservationActions =
+    | ReservationCreateAction
+    | ReservationFetchBoughtAction
+    | ReservationFetchSoldAction
+    | ReservationSelectAction;

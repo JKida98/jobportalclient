@@ -22,3 +22,44 @@ export const createReservation = (ids: IReservationLineForCreation[]) => {
         );
     };
 };
+
+export const getMyBoughtReservations = () => {
+    return (dispatch: Dispatch<ReservationActions | LoadingActions>) => {
+        dispatch({ type: types.SHOW_SPINNER });
+        new Api().get('my/reservations/bought').then(
+            (response: AxiosResponse<IReservationDto[]>) => {
+                const payload = response.data;
+                dispatch({ type: types.RESERVATION_FETCH_BOUGHT_SUCCESS, payload });
+                dispatch({ type: types.HIDE_SPINNER });
+            },
+            (error) => {
+                console.error(error);
+                dispatch({ type: types.HIDE_SPINNER });
+            }
+        );
+    };
+};
+
+export const getMySoldReservations = () => {
+    return (dispatch: Dispatch<ReservationActions | LoadingActions>) => {
+        dispatch({ type: types.SHOW_SPINNER });
+        new Api().get('my/reservations/sold').then(
+            (response: AxiosResponse<IReservationDto[]>) => {
+                const payload = response.data;
+                dispatch({ type: types.RESERVATION_FETCH_SOLD_SUCCESS, payload });
+                dispatch({ type: types.HIDE_SPINNER });
+            },
+            (error) => {
+                console.error(error);
+                dispatch({ type: types.HIDE_SPINNER });
+            }
+        );
+    };
+};
+
+export const selectReservation = (id?: string) => {
+    return (dispatch: Dispatch<ReservationActions | LoadingActions>) => {
+        const payload = id;
+        dispatch({ type: types.RESERVATION_SELECT_SUCCESS, payload });
+    };
+};

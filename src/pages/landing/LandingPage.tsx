@@ -4,8 +4,14 @@ import { useNavigate } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
 import OffersList from '../../components/lists/OfferList';
+import ReservationList from '../../components/lists/ReservationList';
 import { IOfferDto } from '../../dtos/IOfferDto';
-import { getMyOffers, getOffers } from '../../redux/actions/offers/offerActions';
+import { IReservationDto } from '../../dtos/IReservationDto';
+import { getOffers } from '../../redux/actions/offers/offerActions';
+import {
+    getMyBoughtReservations,
+    getMySoldReservations
+} from '../../redux/actions/reservations/reservationActions';
 import { AppState } from '../../redux/reducers';
 import AuthService from '../../services/authService';
 
@@ -15,11 +21,17 @@ const LandingPage = () => {
     const authService = new AuthService();
 
     const offers = useSelector((state: AppState) => state.offerReducer.offers);
-    const myOffers = useSelector((state: AppState) => state.offerReducer.myOffers);
+    const boughtReservations = useSelector(
+        (state: AppState) => state.reservationReducer.boughtReservations
+    );
+    const soldReservations = useSelector(
+        (state: AppState) => state.reservationReducer.soldReservations
+    );
 
     useEffect(() => {
         dispatch(getOffers());
-        dispatch(getMyOffers());
+        dispatch(getMyBoughtReservations());
+        dispatch(getMySoldReservations());
     }, [dispatch]);
 
     const handleOfferClicked = (offer: IOfferDto) => {
@@ -29,17 +41,34 @@ const LandingPage = () => {
         navigate(`/offer/${offer.id}`);
     };
 
+    const handleReservationClicked = (reservation: IReservationDto) => {
+        navigate(`/reservation/${reservation.id}`);
+    };
+
     return (
         <Container>
             <Row>
                 <Col xs="6">
-                    <SimpleCard title="Recommended offers" subtitle="Click an offer and reserve it">
-                        <OffersList list={offers} action={handleOfferClicked} />
+                    <SimpleCard title="Bought reservations">
+                        <ReservationList
+                            list={boughtReservations}
+                            action={handleReservationClicked}
+                        />
                     </SimpleCard>
                 </Col>
                 <Col xs="6">
-                    <SimpleCard title="My offers">
-                        <OffersList list={myOffers} action={handleOfferClicked} />
+                    <SimpleCard title="Sold reservations">
+                        <ReservationList
+                            list={soldReservations}
+                            action={handleReservationClicked}
+                        />
+                    </SimpleCard>
+                </Col>
+            </Row>
+            <Row className="mt-4">
+                <Col xs="12">
+                    <SimpleCard title="Recommended offers" subtitle="Click an offer and reserve it">
+                        <OffersList list={offers} action={handleOfferClicked} />
                     </SimpleCard>
                 </Col>
             </Row>

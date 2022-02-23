@@ -12,7 +12,6 @@ const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const authService = new AuthService();
-
     const error = useSelector((state: AppState) => state.authReducer.error);
     const errorMessage = useSelector((state: AppState) => state.authReducer.errorMessage);
     const authenticated = useSelector((state: AppState) => state.authReducer.success);

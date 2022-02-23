@@ -3,14 +3,26 @@
     justify-content: center;
     height: 100vh;
     align-items: center;
-    background: rgb(103, 94, 255);
-    background: linear-gradient(120deg, rgba(103, 94, 255, 1) 0%, rgba(110, 110, 235, 1) 29%, rgba(65, 175, 255, 1) 59%, rgba(9, 190, 255, 1) 81%, rgba(0, 165, 199, 1) 100%);
+    background: linear-gradient(
+        120deg,
+        rgba(103, 94, 255, 1) 0%,
+        rgba(110, 110, 235, 1) 29%,
+        rgba(65, 175, 255, 1) 59%,
+        rgba(9, 190, 255, 1) 81%,
+        rgba(0, 165, 199, 1) 100%
+    );
 }
 
 .mainTemplate {
-    height: 100vh;
-    background: rgb(103, 94, 255);
-    background: linear-gradient(120deg, rgba(103, 94, 255, 1) 0%, rgba(110, 110, 235, 1) 29%, rgba(65, 175, 255, 1) 59%, rgba(9, 190, 255, 1) 81%, rgba(0, 165, 199, 1) 100%);
+    padding-bottom: 1.5rem;
+    background: linear-gradient(
+        120deg,
+        rgba(103, 94, 255, 1) 0%,
+        rgba(110, 110, 235, 1) 29%,
+        rgba(65, 175, 255, 1) 59%,
+        rgba(9, 190, 255, 1) 81%,
+        rgba(0, 165, 199, 1) 100%
+    );
 }
 
 .navigation {

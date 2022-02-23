@@ -4,6 +4,7 @@ import { reservationReducer } from './reservationReducer';
 import { authReducer } from './authReducer';
 import { offerReducer } from './offerReducer';
 import { loadingReducer } from './loadingReducer';
+import { reservationLineReducer } from './reservationLineReducer';
 import { AuthActions } from '../actions/auth/authActionsInterfaces';
 
 export const reducers = combineReducers({
@@ -11,7 +12,8 @@ export const reducers = combineReducers({
     offerReducer,
     loadingReducer,
     cardReducer,
-    reservationReducer
+    reservationReducer,
+    reservationLineReducer
 });
 
 const rootReducer = (state: any, action: any) => {

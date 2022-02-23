@@ -6,6 +6,7 @@ import LandingPage from '../pages/landing';
 import LoginPage from '../pages/login';
 import OfferOverview from '../pages/offerOverview';
 import OffersOverview from '../pages/offersOverview';
+import ReservationOverview from '../pages/reservationOverview';
 
 const ApplicationRoutes = () => {
     return (
@@ -16,6 +17,7 @@ const ApplicationRoutes = () => {
                     <Route path="offer/:offerId" element={<OfferOverview />} />
                     <Route path="offers" element={<OffersOverview />} />
                     <Route path="card" element={<CardOverview />} />
+                    <Route path="reservation/:reservationId" element={<ReservationOverview />} />
                 </Route>
                 <Route element={<LoginTemplate />}>
                     <Route path="login" element={<LoginPage />} />
