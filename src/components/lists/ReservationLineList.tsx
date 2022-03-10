@@ -1,5 +1,5 @@
 import React from 'react';
-import { Check } from 'react-feather';
+import { Check, Plus } from 'react-feather';
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { IReservationLineDto, IReservationLineStatus } from '../../dtos/IReservationLines';
@@ -24,6 +24,12 @@ const ReservationLineList: React.FC<IReservationLineListProps> = ({ list }) => {
         const id = reservationLine.id;
         const status = reservationLine.status;
         if (status === IReservationLineStatus.CREATED) {
+            return <Plus onClick={() => handleActionClicked(id, status)} />;
+        } else if (status === IReservationLineStatus.ACCEPTED) {
+            return <Check onClick={() => handleActionClicked(id, status)} />;
+        } else if (status === IReservationLineStatus.INPROGRESS) {
+            return <Check onClick={() => handleActionClicked(id, status)} />;
+        } else if (status === IReservationLineStatus.FINISHED) {
             return <Check onClick={() => handleActionClicked(id, status)} />;
         }
     };

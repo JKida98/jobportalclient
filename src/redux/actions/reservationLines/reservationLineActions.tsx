@@ -29,7 +29,7 @@ export const changeReservationLineStatus = (id: string, currentStatus: IReservat
         new Api().post(`reservationLines/${id}/status/${currentStatus}`).then(
             (response: AxiosResponse<IReservationLineDto>) => {
                 const payload = response.data;
-                dispatch({ type: types.RESERVATION_LINES_CHANGE_STATUS_SUCCES, payload });
+                dispatch({ type: types.RESERVATION_LINES_CHANGE_STATUS_SUCCESS, payload });
                 dispatch({ type: types.HIDE_SPINNER });
             },
             (error) => {

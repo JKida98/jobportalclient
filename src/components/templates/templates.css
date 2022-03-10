@@ -15,6 +15,7 @@
 
 .mainTemplate {
     padding-bottom: 1.5rem;
+    height: 100vh;
     background: linear-gradient(
         120deg,
         rgba(103, 94, 255, 1) 0%,

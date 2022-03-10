@@ -7,7 +7,7 @@ interface ReservationLinesFetchAction {
 }
 
 interface ReservationLinesChangeStatusAction {
-    type: typeof types.RESERVATION_LINES_CHANGE_STATUS_SUCCES;
+    type: typeof types.RESERVATION_LINES_CHANGE_STATUS_SUCCESS;
     payload: IReservationLineDto;
 }
 
