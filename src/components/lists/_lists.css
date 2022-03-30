@@ -1,19 +1,19 @@
 /* Overview list */
-.titleSubtitleElement {
+.listElement {
     margin-top: 1rem;
     cursor: pointer;
     padding: 0.25rem 0;
 }
 
-.titleSubtitleElement > p {
-    margin: 0 !important;
-}
-
-.titleSubtitleElement:hover {
+.listElement:hover {
     border-bottom: 1px solid #c4ecff;
 }
 
-.titleSubtitleElementTitle {
+.listElement > p {
+    margin: 0 !important;
+}
+
+.listElementTitle {
     padding-bottom: 0.25rem;
     font-weight: bold;
 }

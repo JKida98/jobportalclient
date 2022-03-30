@@ -16,8 +16,8 @@ const ReservationList: React.FC<IReservationListProps> = ({ list, action }) => {
                 const status = reservationStatusFormat(x.status);
                 const date = basicDateTimeFormat(x.createdAt);
                 return (
-                    <div className="titleSubtitleElement" key={x.id} onClick={() => action(x)}>
-                        <p className="titleSubtitleElementTitle">
+                    <div className="listElement" key={x.id} onClick={() => action(x)}>
+                        <p className="listElementTitle">
                             Total price: {x.totalPrice} [{date}]
                         </p>
                         <p className="secondaryText maxThreeLines">Status: {status}</p>

@@ -12,13 +12,20 @@
     color: gray;
 }
 
-.secondaryBlackText {
+.secondaryTextBlack {
     font-size: 11px;
     color: black;
 }
 
 .alert {
     width: 100%;
+}
+
+.spinnerWrapper {
+    display: flex;
+    height: 5em;
+    justify-content: center;
+    align-items: center;
 }
 
 .spaceAround {
@@ -33,6 +40,10 @@
 
 .rowAlignCenter {
     align-items: center;
+}
+
+.alignSelfCenter {
+    align-self: center;
 }
 
 .maxThreeLines {

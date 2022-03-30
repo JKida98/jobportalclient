@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Edit, Plus, Trash } from 'react-feather';
+import { FiEdit, FiTrash, FiPlusSquare } from 'react-icons/fi';
+
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { IOfferDto } from '../../dtos/IOfferDto';
@@ -15,26 +16,29 @@ interface ICrudOffersList {
 
 const CrudOfferList: React.FC<ICrudOffersList> = ({ list, action }) => {
     const dispatch = useDispatch();
-    const [id, setId] = useState('');
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [editingOffer, setEditingOffer] = useState(false);
-    const [showOfferModal, setShowOfferModal] = useState(false);
+    const [selectedOffer, setSelectedOffer] = useState<IOfferDto | undefined>(undefined);
+    // const [id, setId] = useState<string | undefined>(undefined);
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+    const [editingOffer, setEditingOffer] = useState<boolean>(false);
+    const [showOfferModal, setShowOfferModal] = useState<boolean>(false);
 
     const handleDeleteOffer = () => {
-        dispatch(removeOffer(id));
+        if (selectedOffer !== undefined) {
+            dispatch(removeOffer(selectedOffer.id));
+        }
     };
 
-    const handleEditClicked = (e: React.MouseEvent, id: string) => {
+    const handleEditClicked = (e: React.MouseEvent, offer: IOfferDto) => {
         e.stopPropagation();
         setShowOfferModal(true);
         setEditingOffer(true);
-        dispatch(getOfferWithoutSpinner(id));
+        dispatch(getOfferWithoutSpinner(offer.id));
     };
 
-    const handleTrashClicked = (e: React.MouseEvent, id: string) => {
+    const handleTrashClicked = (e: React.MouseEvent, offer: IOfferDto) => {
         e.stopPropagation();
         setShowDeleteModal(!showDeleteModal);
-        setId(id);
+        setSelectedOffer(offer);
     };
 
     const handlePlusClicked = (e: React.MouseEvent) => {
@@ -43,44 +47,38 @@ const CrudOfferList: React.FC<ICrudOffersList> = ({ list, action }) => {
         setEditingOffer(false);
     };
 
-    const renderList = () => {
-        return list?.map((x) => {
-            return (
+    return (
+        <>
+            {list?.map((x) => (
                 <Row className="rowAlignCenter mb-4" key={x.id} onClick={() => action(x)}>
                     <Col xs="10">
                         <p className="m-0">{x.title}</p>
-                        <p className="m-0 secondaryBlackText">Price per hour: {x.hourlyPrice}</p>
+                        <p className="m-0 secondaryTextBlack">Price per hour: {x.hourlyPrice}</p>
                         <p className="m-0 secondaryText maxThreeLines">{x.description}</p>
                     </Col>
                     <Col xs="2 spaceAround">
-                        <Edit size={20} onClick={(e) => handleEditClicked(e, x.id)} />
-                        <Trash size={20} onClick={(e) => handleTrashClicked(e, x.id)} />
+                        <FiEdit size={20} onClick={(e) => handleEditClicked(e, x)} />
+                        <FiTrash size={20} onClick={(e) => handleTrashClicked(e, x)} />
                     </Col>
                 </Row>
-            );
-        });
-    };
-
-    return (
-        <>
-            {renderList()}
+            ))}
             <Row>
                 <Col>
-                    <Plus onClick={(e) => handlePlusClicked(e)} />
+                    <FiPlusSquare size={22} onClick={(e) => handlePlusClicked(e)} />
                 </Col>
             </Row>
             <DeleteConfirmationModal
                 showModal={showDeleteModal}
+                title={`Remove ${selectedOffer?.title}`}
+                confirmationText="Do you want to remove selected offer?"
                 action={() => handleDeleteOffer()}
                 toggle={() => setShowDeleteModal(!showDeleteModal)}
             />
-            {showOfferModal && (
-                <OfferModal
-                    showModal={showOfferModal}
-                    edit={editingOffer}
-                    toggle={() => setShowOfferModal(!showOfferModal)}
-                />
-            )}
+            <OfferModal
+                showModal={showOfferModal}
+                edit={editingOffer}
+                toggle={() => setShowOfferModal(!showOfferModal)}
+            />
         </>
     );
 };

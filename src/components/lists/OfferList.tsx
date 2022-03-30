@@ -12,8 +12,8 @@ const OffersList: React.FC<IOffersListProps> = ({ list, action }) => {
         <>
             {list?.map((x) => {
                 return (
-                    <div className="titleSubtitleElement" key={x.id} onClick={() => action(x)}>
-                        <p className="titleSubtitleElementTitle">{x.title}</p>
+                    <div className="listElement" key={x.id} onClick={() => action(x)}>
+                        <p className="listElementTitle">{x.title}</p>
                         <p className="secondaryText maxThreeLines">{x.description}</p>
                     </div>
                 );

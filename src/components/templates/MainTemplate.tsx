@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { Outlet, useNavigate } from 'react-router-dom';
+import { Container } from 'reactstrap';
 import * as types from '../../redux/constants';
 import AuthService from '../../services/authService';
 import './templates.css';
@@ -32,7 +33,9 @@ const MainTemplate = () => {
                     Logout
                 </div>
             </div>
-            <Outlet />
+            <Container>
+                <Outlet />
+            </Container>
         </div>
     );
 };

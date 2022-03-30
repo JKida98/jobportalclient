@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Trash } from 'react-feather';
+import { FiTrash } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { IOfferDto } from '../../dtos/IOfferDto';
@@ -28,28 +28,24 @@ const RemoveOfferList: React.FC<IRemoveOffersListProps> = ({ list, action, remov
         setId(id);
     };
 
-    const renderList = () => {
-        return list?.map((x) => {
-            return (
+    return (
+        <>
+            {list?.map((x) => (
                 <Row className="rowAlignCenter mb-4" key={x.id} onClick={() => action(x)}>
                     <Col xs="11">
                         <p className="m-0">{x.title}</p>
-                        <p className="m-0 secondaryBlackText">Price pr. hour: {x.hourlyPrice}</p>
+                        <p className="m-0 secondaryTextBlack">Price pr. hour: {x.hourlyPrice}</p>
                         <p className="m-0 secondaryText maxThreeLines">{x.description}</p>
                     </Col>
                     <Col xs="1 spaceAround">
-                        <Trash onClick={(e) => handleTrashClicked(e, x.id)} />
+                        <FiTrash onClick={(e) => handleTrashClicked(e, x.id)} />
                     </Col>
                 </Row>
-            );
-        });
-    };
-
-    return (
-        <>
-            {renderList()}
+            ))}
             <DeleteConfirmationModal
                 showModal={showDeleteModal}
+                title="Remove from shopping card"
+                confirmationText="Would you like to remove the offer from the shopping card?"
                 action={() => handleDeleteOffer()}
                 toggle={() => setShowDeleteModal(!showDeleteModal)}
             />

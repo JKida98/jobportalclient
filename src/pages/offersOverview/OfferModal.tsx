@@ -47,10 +47,10 @@ const OfferModal: React.FC<IOfferModalProps> = ({ showModal, edit, toggle }) => 
             <ModalFooter>
                 <Row className="w-100 m-0">
                     <Col className="spaceBetween m-0 p-0">
-                        <Button outline onClick={() => toggle()}>
+                        <Button color="secondary" outline onClick={() => toggle()}>
                             Cancel
                         </Button>
-                        <Button onClick={() => formikRef.current.handleSubmit()} color="info">
+                        <Button onClick={() => formikRef.current.handleSubmit()} color="primary">
                             {edit ? 'Save' : 'Add offer'}
                         </Button>
                     </Col>

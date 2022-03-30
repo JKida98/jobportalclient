@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { Col, Container, Row } from 'reactstrap';
-import { SimpleCard } from '../../components/cards/Cards';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Button, Col, Row } from 'reactstrap';
+import { SimpleCard, TitleLessCard } from '../../components/cards/Cards';
 import { addOfferToCard } from '../../redux/actions/card/cardActions';
 import { getOffer } from '../../redux/actions/offers/offerActions';
 import { AppState } from '../../redux/reducers';
@@ -15,6 +15,7 @@ const OfferOverview = () => {
     const { offerId } = useParams<OfferOverviewParams>();
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const offer = useSelector((state: AppState) => state.offerReducer.offer);
 
@@ -24,25 +25,24 @@ const OfferOverview = () => {
 
     const handleReserveClicked = () => {
         dispatch(addOfferToCard(offer));
+        navigate('/card');
     };
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <SimpleCard title={offer.title} subtitle={offer.description}>
-                        <p>Price: {offer.hourlyPrice}</p>
-                    </SimpleCard>
-                </Col>
-                <Col>
-                    <SimpleCard title="What do you want to do with the offer?">
-                        <button onClick={handleReserveClicked} className="actionButton">
-                            Reserve
-                        </button>
-                    </SimpleCard>
-                </Col>
-            </Row>
-        </Container>
+        <Row>
+            <Col>
+                <SimpleCard title={offer.title} subtitle={offer.description}>
+                    <p>Price: {offer.hourlyPrice}</p>
+                </SimpleCard>
+            </Col>
+            <Col>
+                <TitleLessCard>
+                    <Button color="primary" onClick={handleReserveClicked}>
+                        Reserve
+                    </Button>
+                </TitleLessCard>
+            </Col>
+        </Row>
     );
 };
 

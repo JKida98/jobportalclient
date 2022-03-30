@@ -4,22 +4,32 @@ interface IDeleteConfirmationModalProps {
     showModal: boolean;
     action: any;
     toggle: any;
+    title: string;
+    confirmationText: string;
 }
 
-const DeleteConfirmationModal: React.FC<IDeleteConfirmationModalProps> = ({ showModal, action, toggle }) => {
+const DeleteConfirmationModal: React.FC<IDeleteConfirmationModalProps> = ({
+    showModal,
+    action,
+    toggle,
+    title,
+    confirmationText
+}) => {
     return (
         <Modal fade isOpen={showModal}>
-            <ModalHeader>Remove offer</ModalHeader>
+            <ModalHeader>{title}</ModalHeader>
             <ModalBody>
-                <p>Do you want to remove selected offer?</p>
+                <p>{confirmationText}</p>
             </ModalBody>
             <ModalFooter>
                 <Row className="w-100 m-0">
                     <Col className="spaceBetween m-0 p-0">
-                        <Button outline onClick={() => toggle()}>
+                        <Button color="secondary" outline onClick={() => toggle()}>
                             Cancel
                         </Button>
-                        <Button onClick={() => action()}>Delete</Button>
+                        <Button color="primary" onClick={() => action()}>
+                            Delete
+                        </Button>
                     </Col>
                 </Row>
             </ModalFooter>

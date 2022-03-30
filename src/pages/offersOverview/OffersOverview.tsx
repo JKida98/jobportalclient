@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
 import CrudOfferList from '../../components/lists/CrudOfferList';
 import { getMyOffers } from '../../redux/actions/offers/offerActions';
@@ -17,23 +17,18 @@ const OffersOverview = () => {
         dispatch(getMyOffers());
     }, [dispatch]);
 
-    const handleOfferClicked = (offer: any) => {
+    const handleOfferClicked = (offer: any): void => {
         navigate(`/offer/${offer.id}`);
     };
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <SimpleCard
-                        title="Offers overview"
-                        subtitle="In this view you manage your offers"
-                    >
-                        <CrudOfferList list={myOffers} action={handleOfferClicked} />
-                    </SimpleCard>
-                </Col>
-            </Row>
-        </Container>
+        <Row>
+            <Col>
+                <SimpleCard title="Offers overview" subtitle="In this view you manage your offers">
+                    <CrudOfferList list={myOffers} action={handleOfferClicked} />
+                </SimpleCard>
+            </Col>
+        </Row>
     );
 };
 

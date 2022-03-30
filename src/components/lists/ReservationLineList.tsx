@@ -1,5 +1,6 @@
 import React from 'react';
-import { Check, Plus } from 'react-feather';
+import { FiPlusSquare, FiCheckSquare } from 'react-icons/fi';
+
 import { useDispatch } from 'react-redux';
 import { Col, Row } from 'reactstrap';
 import { IReservationLineDto, IReservationLineStatus } from '../../dtos/IReservationLines';
@@ -24,13 +25,13 @@ const ReservationLineList: React.FC<IReservationLineListProps> = ({ list }) => {
         const id = reservationLine.id;
         const status = reservationLine.status;
         if (status === IReservationLineStatus.CREATED) {
-            return <Plus onClick={() => handleActionClicked(id, status)} />;
+            return <FiPlusSquare onClick={() => handleActionClicked(id, status)} />;
         } else if (status === IReservationLineStatus.ACCEPTED) {
-            return <Check onClick={() => handleActionClicked(id, status)} />;
+            return <FiCheckSquare onClick={() => handleActionClicked(id, status)} />;
         } else if (status === IReservationLineStatus.INPROGRESS) {
-            return <Check onClick={() => handleActionClicked(id, status)} />;
+            return <FiCheckSquare onClick={() => handleActionClicked(id, status)} />;
         } else if (status === IReservationLineStatus.FINISHED) {
-            return <Check onClick={() => handleActionClicked(id, status)} />;
+            return <FiCheckSquare onClick={() => handleActionClicked(id, status)} />;
         }
     };
 
@@ -41,7 +42,7 @@ const ReservationLineList: React.FC<IReservationLineListProps> = ({ list }) => {
             return (
                 <Row className="rowAlignCenter mb-4" key={x.id}>
                     <Col xs="11">
-                        <p className="titleSubtitleElementTitle">{x.offer.title}</p>
+                        <p className="listElementTitle">{x.offer.title}</p>
                         <p className="secondaryText">{status}</p>
                     </Col>
 

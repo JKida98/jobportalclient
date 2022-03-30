@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
 import OffersList from '../../components/lists/OfferList';
 import ReservationList from '../../components/lists/ReservationList';
@@ -46,7 +46,7 @@ const LandingPage = () => {
     };
 
     return (
-        <Container>
+        <>
             <Row>
                 <Col xs="6">
                     <SimpleCard title="Bought reservations">
@@ -72,7 +72,7 @@ const LandingPage = () => {
                     </SimpleCard>
                 </Col>
             </Row>
-        </Container>
+        </>
     );
 };
 

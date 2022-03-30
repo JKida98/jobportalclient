@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
 import ReservationLineList from '../../components/lists/ReservationLineList';
 import { getReservationLinesForReservation } from '../../redux/actions/reservationLines/reservationLineActions';
@@ -29,15 +29,13 @@ const ReservationOverview = () => {
     }, [dispatch, reservationId]);
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <SimpleCard title={`RESERVATION Total price: ${reservation?.totalPrice}`}>
-                        <ReservationLineList list={reservationLines} />
-                    </SimpleCard>
-                </Col>
-            </Row>
-        </Container>
+        <Row>
+            <Col>
+                <SimpleCard title={`RESERVATION Total price: ${reservation?.totalPrice}`}>
+                    <ReservationLineList list={reservationLines} />
+                </SimpleCard>
+            </Col>
+        </Row>
     );
 };
 

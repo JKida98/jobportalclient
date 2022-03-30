@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Container, Row } from 'reactstrap';
+import { Col, Row } from 'reactstrap';
 import { SimpleCard } from '../../components/cards/Cards';
 import RemoveOfferList from '../../components/lists/RemoveOfferList';
 import { removeOfferFromCard } from '../../redux/actions/card/cardActions';
@@ -29,17 +29,15 @@ const CardOverview = () => {
         return total;
     };
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <SimpleCard title="Your items">
-                        <RemoveOfferList list={cardOffers} removeAction={handleRemoveClicked} />
-                        <label>Total price: {calculateTotal()}</label>
-                        <button onClick={handleCreatingOrder}>Create offer</button>
-                    </SimpleCard>
-                </Col>
-            </Row>
-        </Container>
+        <Row>
+            <Col>
+                <SimpleCard title="Your items">
+                    <RemoveOfferList list={cardOffers} removeAction={handleRemoveClicked} />
+                    <label>Total price: {calculateTotal()}</label>
+                    <button onClick={handleCreatingOrder}>Create offer</button>
+                </SimpleCard>
+            </Col>
+        </Row>
     );
 };
 
