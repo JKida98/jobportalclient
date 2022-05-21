@@ -4,6 +4,7 @@ import { Api } from '../../../api/api';
 import AuthService from '../../../services/authService';
 import * as types from '../../constants';
 import { AuthActions } from './authActionsInterfaces';
+import { AxiosError, AxiosResponse } from 'axios';
 
 export interface LoginFormValues {
     email: string;
@@ -18,7 +19,7 @@ export interface IToken {
 export const login = (values: LoginFormValues) => {
     return (dispatch: Dispatch<AuthActions>) => {
         new Api().post('auth/login', values).then(
-            (response) => {
+            (response: AxiosResponse) => {
                 const token = response.data.token;
                 const tokenDecoded = jwt_decode<IToken>(token);
                 const authService = new AuthService();
@@ -26,8 +27,8 @@ export const login = (values: LoginFormValues) => {
                 authService.setMyId(tokenDecoded.Id);
                 dispatch({ type: types.AUTH_USER_SUCCESSFUL, payload: true });
             },
-            (error) => {
-                const payload = error.response.data;
+            (error: AxiosError) => {
+                const payload = error.response?.data;
                 dispatch({ type: types.AUTH_USER_ERROR, payload });
             }
         );

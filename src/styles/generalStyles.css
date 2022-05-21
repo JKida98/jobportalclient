@@ -1,10 +1,14 @@
 .actionButton {
     width: 100%;
     background-color: #09bdffd7;
-    border: none;
+    border: 1px solid #09bdffd7;
     border-radius: 0.25rem;
     font-weight: 500;
     letter-spacing: 0.07rem;
+}
+
+.actionButton:hover {
+    border: 1px solid black;
 }
 
 .secondaryText {
@@ -36,6 +40,10 @@
 .spaceBetween {
     display: flex;
     justify-content: space-between;
+}
+
+.textCenter {
+    text-align: center;
 }
 
 .rowAlignCenter {

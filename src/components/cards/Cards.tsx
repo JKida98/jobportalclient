@@ -5,11 +5,15 @@ import './cards.css';
 export interface ISimpleCardProps {
     title: string;
     subtitle?: string;
-    children?: any;
+    children?: React.ReactNode;
+}
+
+interface ILoginCardProps {
+    children?: React.ReactNode;
 }
 
 export interface ITitleLessCardProps {
-    children?: any;
+    children?: React.ReactNode;
 }
 
 export const SimpleCard = ({ title, subtitle, children }: ISimpleCardProps) => {
@@ -20,6 +24,14 @@ export const SimpleCard = ({ title, subtitle, children }: ISimpleCardProps) => {
                 <p className="secondaryText">{subtitle}</p>
                 {children}
             </Loading>
+        </div>
+    );
+};
+
+export const LoginCard = ({ children }: ILoginCardProps) => {
+    return (
+        <div className="loginCard p-4">
+            <Loading>{children}</Loading>
         </div>
     );
 };

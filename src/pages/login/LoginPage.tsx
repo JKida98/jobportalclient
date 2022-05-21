@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Alert } from 'reactstrap';
-import { SimpleCard } from '../../components/cards/Cards';
+import { LoginCard } from '../../components/cards/Cards';
 import { login, LoginFormValues } from '../../redux/actions/auth/authActions';
 import { AppState } from '../../redux/reducers';
 import AuthService from '../../services/authService';
@@ -16,7 +16,7 @@ const LoginPage = () => {
     const errorMessage = useSelector((state: AppState) => state.authReducer.errorMessage);
     const authenticated = useSelector((state: AppState) => state.authReducer.success);
 
-    const handleLogin = (values: LoginFormValues) => {
+    const handleLogin = (values: LoginFormValues): void => {
         dispatch(login(values));
     };
 
@@ -33,14 +33,16 @@ const LoginPage = () => {
     }, [navigate]);
 
     return (
-        <SimpleCard title="Welcome to JobPortal" subtitle="Enter your credentials to log in">
+        <LoginCard>
+            <h3 className="textCenter">Welcome to JobPortal</h3>
+            <p className="secondaryText textCenter">Provide your credentals to log in</p>
             {error && (
                 <Alert className="alert" color="danger" title="error" isOpen>
                     <p>{errorMessage}</p>
                 </Alert>
             )}
             <LoginForm handleLogin={handleLogin} />
-        </SimpleCard>
+        </LoginCard>
     );
 };
 
