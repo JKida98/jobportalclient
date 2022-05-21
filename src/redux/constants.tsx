@@ -28,3 +28,6 @@ export const RESERVATION_LINES_CHANGE_STATUS_SUCCESS = 'RESERVATION_LINES_CHANGE
 // loading
 export const SHOW_SPINNER = 'SHOW_SPINNER';
 export const HIDE_SPINNER = 'HIDE_SPINNER';
+
+// error
+export const ERROR = 'ERROR';

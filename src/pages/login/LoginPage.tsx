@@ -12,8 +12,7 @@ const LoginPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const authService = new AuthService();
-    const error = useSelector((state: AppState) => state.authReducer.error);
-    const errorMessage = useSelector((state: AppState) => state.authReducer.errorMessage);
+    const error = useSelector((state: AppState) => state.errorReducer.error);
     const authenticated = useSelector((state: AppState) => state.authReducer.success);
 
     const handleLogin = (values: LoginFormValues): void => {
@@ -38,7 +37,7 @@ const LoginPage = () => {
             <p className="secondaryText textCenter">Provide your credentals to log in</p>
             {error && (
                 <Alert className="alert" color="danger" title="error" isOpen>
-                    <p>{errorMessage}</p>
+                    <span>{error}</span>
                 </Alert>
             )}
             <LoginForm handleLogin={handleLogin} />

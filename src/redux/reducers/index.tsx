@@ -4,12 +4,14 @@ import { reservationReducer } from './reservationReducer';
 import { authReducer } from './authReducer';
 import { offerReducer } from './offerReducer';
 import { loadingReducer } from './loadingReducer';
+import { errorReducer } from './errorReducer';
 import { reservationLineReducer } from './reservationLineReducer';
 import { AuthActions } from '../actions/auth/authActionsInterfaces';
 
 export const reducers = combineReducers({
     authReducer,
     offerReducer,
+    errorReducer,
     loadingReducer,
     cardReducer,
     reservationReducer,

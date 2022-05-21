@@ -1,10 +1,11 @@
-import { Dispatch } from 'react';
+import { AxiosResponse } from 'axios';
 import jwt_decode from 'jwt-decode';
+import { Dispatch } from 'react';
 import { Api } from '../../../api/api';
 import AuthService from '../../../services/authService';
 import * as types from '../../constants';
+import { ErrorAction } from '../../reducers/errorReducer';
 import { AuthActions } from './authActionsInterfaces';
-import { AxiosError, AxiosResponse } from 'axios';
 
 export interface LoginFormValues {
     email: string;
@@ -17,7 +18,7 @@ export interface IToken {
 }
 
 export const login = (values: LoginFormValues) => {
-    return (dispatch: Dispatch<AuthActions>) => {
+    return (dispatch: Dispatch<AuthActions | ErrorAction>) => {
         new Api().post('auth/login', values).then(
             (response: AxiosResponse) => {
                 const token = response.data.token;
@@ -27,9 +28,9 @@ export const login = (values: LoginFormValues) => {
                 authService.setMyId(tokenDecoded.Id);
                 dispatch({ type: types.AUTH_USER_SUCCESSFUL, payload: true });
             },
-            (error: AxiosError) => {
-                const payload = error.response?.data;
-                dispatch({ type: types.AUTH_USER_ERROR, payload });
+            () => {
+                const payload = 'There was a problem with logging in. Try again.';
+                dispatch({ type: types.ERROR, payload });
             }
         );
     };
