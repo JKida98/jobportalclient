@@ -15,6 +15,8 @@ const LoginPage = () => {
     const error = useSelector((state: AppState) => state.errorReducer.error);
     const authenticated = useSelector((state: AppState) => state.authReducer.success);
 
+    const jwtToken = authService.getAuthToken();
+
     const handleLogin = (values: LoginFormValues): void => {
         dispatch(login(values));
     };
@@ -26,10 +28,10 @@ const LoginPage = () => {
     }, [authenticated, navigate]);
 
     useEffect(() => {
-        if (authService.getAuthToken() !== null) {
+        if (jwtToken !== null) {
             navigate('/main');
         }
-    }, [navigate]);
+    }, [navigate, jwtToken]);
 
     return (
         <LoginCard>

@@ -25,12 +25,6 @@ export const authReducer: Reducer<AuthReducerState, AuthActions> = (
                 ...state,
                 success: false
             };
-        case types.AUTH_USER_ERROR:
-            return {
-                ...state,
-                error: true,
-                errorMessage: 'There was a problem with loginng in'
-            };
         default:
             return state;
     }

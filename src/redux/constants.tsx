@@ -1,7 +1,6 @@
 // auth
 export const AUTH_USER_SUCCESSFUL = 'AUTH_USER_SUCCESSFUL';
 export const AUTH_USER_RESET = 'AUTH_USER_RESET';
-export const AUTH_USER_ERROR = 'AUTH_USER_ERROR';
 
 // offers
 export const OFFER_FETCH_ALL_SUCCESS = 'OFFER_FETCH_ALL_SUCCESS';
